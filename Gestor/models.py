@@ -23,15 +23,15 @@ class Tarea(models.Model):
     completado = models.BooleanField(default=False) 
     fecha_de_creacion = models.DateField() 
     hora_de_vencimiento = models.TimeField()
-    colaboradores = models.ManyToManyField(Usuario, related_name='proyectos_asignados')  # Relación muchos a muchos con Usuario (Colaboradores)
-
+    colaboradores = models.ManyToManyField(Usuario, related_name='proyectos_asignados')
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField()
     duracion_estimada = models.FloatField()
     fecha_de_inicio = models.DateField()
-    fecha_de_finalizacion = models.DateField() 
+    fecha_de_finalizacion = models.DateField()  
+    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='tareas_creadas')
     
 class Etiqueta(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
