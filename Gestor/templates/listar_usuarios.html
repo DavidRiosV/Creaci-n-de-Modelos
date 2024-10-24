@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Usuarios</h1>
+    <ul>
+        {% for usuario in usuarios %}
+            <li>Nombre: {{ usuario.nombre }} - Correo: {{ usuario.correo_electronico }} - Fecha de Registro: {{ usuario.fecha_de_registro }}</li>
+        {% empty %}
+            <li>No hay usuarios registrados.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

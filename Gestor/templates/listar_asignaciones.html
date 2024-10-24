@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Asignaciones de Tareas</title>
+</head>
+<body>
+    <h1>Asignaciones de Tareas</h1>
+    <ul>
+        {% for asignacion in asignaciones %}
+            <li>Observaciones: {{ asignacion.observaciones }} - Fecha de Asignación: {{ asignacion.fecha_de_asignacion }}</li>
+        {% empty %}
+            <li>No hay asignaciones disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

@@ -9,18 +9,7 @@ class Usuario(models.Model):
     correo_electronico = models.TextField(unique=True)
     contraseña = models.TextField(max_length=100)
     fecha_de_registro = models.DateTimeField(default=timezone.now)
-
-class Proyecto(models.Model):
-    nombre = models.CharField(max_length=200)
-    descripcion = models.TextField()
-    duracion_estimada = models.FloatField()
-    fecha_de_inicio = models.DateField()
-    fecha_de_finalizacion = models.DateField()  
-    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='proyectos_creados')
-
-class Etiqueta(models.Model):
-    nombre = models.CharField(max_length=50, unique=True)
-
+    
 class Tarea(models.Model):
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
@@ -34,19 +23,23 @@ class Tarea(models.Model):
     completado = models.BooleanField(default=False) 
     fecha_de_creacion = models.DateField() 
     hora_de_vencimiento = models.TimeField()
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='tareas')
+    colaboradores = models.ManyToManyField(Usuario, related_name='proyectos_asignados')
+
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=200)
+    descripcion = models.TextField()
+    duracion_estimada = models.FloatField()
+    fecha_de_inicio = models.DateField()
+    fecha_de_finalizacion = models.DateField()  
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='tareas_creadas')
-    asignados = models.ManyToManyField(Usuario, through='AsignacionDeTarea', related_name='tareas_asignadas')
-    etiquetas = models.ManyToManyField(Etiqueta, related_name='tareas_asociadas')
+    
+class Etiqueta(models.Model):
+    nombre = models.CharField(max_length=50, unique=True)
 
 class AsignacionDeTarea(models.Model):
-    tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     observaciones = models.TextField()
-    fecha_de_asignacion = models.DateTimeField(default=timezone.now)
-
+    fecha_de_asignacion = models.DateTimeField(default=timezone.now) 
+    
 class Comentario(models.Model):
     contenido = models.TextField()
     fecha_de_comentario = models.DateTimeField(default=timezone.now)
-    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='comentarios')
-    tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE, related_name='comentarios')

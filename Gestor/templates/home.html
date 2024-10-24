@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Inicio</title>
+</head>
+<body>
+    <h1>Gestor de Tareas</h1>
+    <ul>
+        <li><a href="{% url 'listar_usuarios' %}">Usuarios</a></li>
+        <li><a href="{% url 'listar_tareas' %}">Tareas</a></li>
+        <li><a href="{% url 'listar_etiquetas' %}">Etiquetas</a></li>
+        <li><a href="{% url 'listar_asignaciones' %}">Asignaciones de Tareas</a></li>
+        <li><a href="{% url 'listar_comentarios' %}">Comentarios</a></li>
+        <li><a href="{% url 'listar_tareas_por_proyecto' 0 %}">Ver Tareas</a></li>
+    </ul>
+</body>
+</html>

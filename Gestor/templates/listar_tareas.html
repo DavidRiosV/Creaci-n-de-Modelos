@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    <h1>Tareas</h1>
+    <ul>
+        {% for tarea in tareas %}
+            <li>Título: {{ tarea.titulo }} - Descripción: {{ tarea.descripcion }} - Prioridad: {{ tarea.prioridad }} - Estado: {{ tarea.estado }} - Fecha de Creación: {{ tarea.fecha_de_creacion }}</li>
+        {% empty %}
+            <li>No hay tareas disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

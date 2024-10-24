@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Comentarios</title>
+</head>
+<body>
+    <h1>Comentarios</h1>
+    <ul>
+        {% for comentario in comentarios %}
+            <li>Contenido: {{ comentario.contenido }} - Fecha de Comentario: {{ comentario.fecha_de_comentario }}</li>
+        {% empty %}
+            <li>No hay comentarios disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

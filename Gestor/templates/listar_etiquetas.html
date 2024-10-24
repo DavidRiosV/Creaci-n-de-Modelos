@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Etiquetas</title>
+</head>
+<body>
+    <h1>Etiquetas</h1>
+    <ul>
+        {% for etiqueta in etiquetas %}
+            <li>Nombre: {{ etiqueta.nombre }}</li>
+        {% empty %}
+            <li>No hay etiquetas disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>
