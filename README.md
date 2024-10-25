@@ -1,2 +1,2 @@
-# Creaci-n-de-Modelos
-Tarea Creación de Modelos
+#Creación de URls, Vistas y QuerySet
+Tarea de Creación de URls, Vistas y QuerySet
